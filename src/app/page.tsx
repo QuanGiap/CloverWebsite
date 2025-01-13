@@ -1,3 +1,4 @@
+'use client'; // Mark this as a client component
 import Image from "next/image";
 import styles from "./page.module.css";
 
