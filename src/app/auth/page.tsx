@@ -1,3 +1,5 @@
+'use client'; // Mark this as a client component
+
 import Footer from "@/component/Footer/Footer";
 import styles from "./page.module.css";
 

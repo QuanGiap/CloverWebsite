@@ -59,6 +59,7 @@
     background: linear-gradient(0.25turn, #3BCB3D, #30AFC0);
     font-size: 1.1rem;
     font-weight: bold;
+    cursor: pointer;
 }
 .auth_button_code{
     margin-top: 1em;
