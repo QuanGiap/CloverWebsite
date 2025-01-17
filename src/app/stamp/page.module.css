@@ -2,3 +2,24 @@
     background-color: black;
     height: 100vh;
 }
+.social_links{
+    height: 30px;
+    background-color: transparent;
+}
+.social_links_group{
+    display: flex;
+    background-color: gray;
+    justify-content: center;
+    gap: 25px;
+}
+.threads_logo{
+    /* background-color: wheat; */
+    margin: 0 -12px;
+}
+.title_page{
+    text-align: center;
+    color: white;
+}
+.title_page h1{
+    text-transform:uppercase;
+}
