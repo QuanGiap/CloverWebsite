@@ -1,4 +1,5 @@
 'use client'; // Mark this as a client component
+import Footer from "@/component/Footer/Footer";
 import styles from "./page.module.css";
 import {useState} from "react";
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
       <header className={styles.header}>
         <h2 className={styles.title}>CLOVER</h2>
         <div className={styles.nav_group}>
-        <a href="#" className={styles.nav_link}>Check Stamps</a>
+        <a href="/auth" className={styles.nav_link}>Check Stamps</a>
         <a href="#" className={styles.nav_link}>Contact Us</a>
         </div>
       </header>
@@ -20,9 +21,7 @@ export default function Home() {
            <p>your space with us?</p>
            </div>
         </main>
-        <footer className={styles.footer}>
-          <p>Copyright©2025 Clover. All rights reserved</p>
-          </footer>
+        <Footer/>
     </div>
     </div>
 

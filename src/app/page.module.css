@@ -46,7 +46,7 @@
     top: 50%;
 }
 .home_paragraph{
-    animation: 1562ms ease 100ms 1 normal both running Appearing;
+    animation: 1562ms ease 300ms 1 normal both running Appearing;
 }
 .gradation_image{
     width: 100%;
@@ -56,7 +56,6 @@
     top: 0;
     left: 0;
 }
-
 .home_paragraph, .footer, .nav_group, .title, .home_paragraph_container{
     z-index: 2;
 }
