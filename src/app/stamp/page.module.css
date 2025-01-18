@@ -37,15 +37,15 @@
     display: grid;
     grid-template-columns: auto auto auto;
     /* background-color: wheat; */
+    justify-content: center;
     width: max-content;
     gap: 10px;
-    justify-content: center;
     left: 50%;
     position: relative;
     transform: translate(-50%,0);
 }
 .break_line{
     height: 100%;
-    width: 8px;
+    width: 8px1;
     background-color: white;
 }
