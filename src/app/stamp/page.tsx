@@ -1,7 +1,8 @@
 "use client"; // Mark this as a client component
 import Footer from "@/component/Footer/Footer";
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import StampIcon from "@/component/StampIcon/StampIcon";
 const fake_data_play = [
   {
     id:123,
@@ -123,8 +124,13 @@ export default function StampPage() {
         clearTimeout(second_id);
     }
 },[]);
+const stampsComponent = useMemo(()=>{
+  return stamps?.map((data)=>{
+    return <StampIcon key={data.id} altText="" imageUrl={data.imgUrl} stamped={data.stamped}/>
+  })
+},[stamps])
 if(!playStory||!stamps){
-    return <h1>Loading...</h1>
+  return <h1>Loading...</h1>
 }
   return (
     <div className={styles.back_ground_page}>
@@ -136,13 +142,12 @@ if(!playStory||!stamps){
         <div className={styles.collection_group}>
           <h6 className={styles.collection_title}>Collection</h6>
           <h6 className={styles.stamp_group}>
-            {stamps.map((data)=>{
-              return <div key={data.id}></div>
-            })}
+           {stampsComponent}
           </h6>
         </div>
-        <div className={styles.break_line}></div>
-        <div className={styles.history_group}></div>
+        <div className={styles.break_line}>test</div>
+        <div className={styles.history_group}>
+        </div>
       </div>
       <div className={styles.social_links_group}>
         <img src="x.svg" className={styles.social_links}/>

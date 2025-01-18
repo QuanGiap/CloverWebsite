@@ -1,6 +1,7 @@
 .back_ground_page{
     background-color: black;
     height: 100vh;
+    color: white;
 }
 .social_links{
     height: 30px;
@@ -13,13 +14,38 @@
     gap: 25px;
 }
 .threads_logo{
-    /* background-color: wheat; */
     margin: 0 -12px;
 }
 .title_page{
     text-align: center;
-    color: white;
+    padding: 3rem;
 }
 .title_page h1{
     text-transform:uppercase;
+}
+.stamp_group{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: max-content;
+    gap: 10px;
+}
+.collection_title{
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+.data_group{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* background-color: wheat; */
+    width: max-content;
+    gap: 10px;
+    justify-content: center;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%,0);
+}
+.break_line{
+    height: 100%;
+    width: 8px;
+    background-color: white;
 }

@@ -1,0 +1,35 @@
+
+.stamped{
+    margin: 0;
+}
+.unstamped{
+    margin: 0;
+}
+.stamped, .unstamped{
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stamped{
+    background: linear-gradient(0.25turn, #3BCB3D, #30AFC0);
+}
+.unstamped{
+    background-color: gray;
+}
+.stamp_image{
+    width: 50px;
+}
+.image_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95px;
+    height: 95px;
+    background-color: black;
+    border-radius: 50%;
+    overflow: hidden;
+}
