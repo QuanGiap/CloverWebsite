@@ -1,0 +1,37 @@
+.play_history_container{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+}
+.play_history_info_container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.address{
+    color: gray;
+}
+.text_with_icon_container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.flag{
+    width: 40px;
+    height: 40px;
+}
+.icon{
+    width: 19px;
+}
+.text_with_icon_container{
+    display: flex;
+    align-content: center;
+}
+.place_name{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.address, .text_with_icon_container{
+    margin-left: 1em;
+}
