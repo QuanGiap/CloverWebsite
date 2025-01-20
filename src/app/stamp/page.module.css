@@ -6,11 +6,16 @@
 .social_links{
     height: 30px;
     background-color: transparent;
+    cursor: pointer;
 }
 .social_links_group{
+    position: absolute;
+    bottom: 10%;
+    right: 50%;
+    transform: translate(50%,0);
     display: flex;
-    background-color: gray;
     justify-content: center;
+    margin-top: 20px;
     gap: 25px;
 }
 .threads_logo{
@@ -26,17 +31,33 @@
 .stamp_group{
     display: grid;
     grid-template-columns: auto auto auto;
-    width: max-content;
     gap: 10px;
+    justify-content: flex-start;
 }
 .collection_title{
     font-size: 1.2rem;
     margin-bottom: 15px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.history_title{
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    grid-column-start:3;
+    grid-column-end: 4;
+    margin-left: 25px;
+}
+.history_group{
+    max-height: 400px;
+    overflow-y: auto;
+    width: 450px;
+    padding-right: 50px;
+    margin-left: 50px;
 }
 .data_group{
     display: grid;
-    grid-template-columns: auto auto auto;
-    /* background-color: wheat; */
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto;
     justify-content: center;
     width: max-content;
     gap: 10px;
@@ -46,6 +67,16 @@
 }
 .break_line{
     height: 100%;
-    width: 8px1;
+    width: 3px;
+    margin: 0 0 0 0;
+    align-self: center;
+    justify-self: center;
     background-color: white;
+}
+.back_ground_img{
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 600px;
+    filter: brightness(0.3);
 }

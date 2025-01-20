@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './page.module.css';
+import styles from './StampIcon.module.css';
 
 interface StampIconProps {
     imageUrl: string;

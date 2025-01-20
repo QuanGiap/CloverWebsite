@@ -32,7 +32,7 @@ export default function AuthPage() {
             Verication Code
           </label>
           <input placeholder="Enter verification code" type="text" id="code" className={styles.auth_input} />
-          <button className={styles.auth_button_code}>Verify code</button>
+          <button className={styles.auth_button_code} onClick={()=>window.location.href = '/stamp'}>Verify code</button>
         </div>
       </div>
         <Footer/>
