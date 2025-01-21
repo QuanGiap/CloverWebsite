@@ -4,102 +4,38 @@ import styles from "./page.module.css";
 import { useState, useEffect, useMemo,useRef } from "react";
 import StampIcon from "@/component/StampIcon/StampIcon";
 import PlayHistoryTab from "@/component/PlayHistoryTab/PlayHistoryTab";
-const fake_data_play = [
-  {
-    id:123,
-    placeName: "Space Needle",
-    flagImgUrl:'ebe9e823cc09db35643e5d89fb6476bd.png',
-    address: "400 Broad St, Seattle, WA 98109, United States",
-    date: new Date("1995-12-17T03:24:00"),
-    point: 728,
-    task: 10,
-    maxTask: 10,
-    time: "07:48",
-  },
-  {
-    id:456,
-    placeName: "Space Needle",
-    flagImgUrl:'ebe9e823cc09db35643e5d89fb6476bd.png',
-    date: new Date("2000-01-01T10:00:00"),
-    address: "400 Broad St, Seattle, WA 98109, United States",
-    point: 500,
-    task: 5,
-    maxTask: 10,
-    time: "10:30",
-  },
-  {
-    id:132,
-    placeName: "Space Needle",
-    flagImgUrl:'ebe9e823cc09db35643e5d89fb6476bd.png',
-    address: "400 Broad St, Seattle, WA 98109, United States",
-    date: new Date("2010-05-15T14:30:00"),
-    point: 850,
-    task: 8,
-    maxTask: 10,
-    time: "14:45",
-  }
-];
-const fake_stamp_data = [
-  {
-    id:123,
-    imgUrl: "space needle.svg",
-    stamped: true,
-  },
-  {
-    id:213,
-    imgUrl: "second tower.png",
-    stamped: false,
-  },
-  {
-    id:312,
-    imgUrl: "eiffel.svg",
-    stamped: false,
-  },
-  {
-    id:456,
-    imgUrl: "clover.png",
-    stamped: false,
-  },
-  {
-    id:654,
-    imgUrl: "clover.png",
-    stamped: false,
-  },
-  {
-    id:546,
-    imgUrl: "clover.png",
-    stamped: false,
-  },
-  {
-    id:564,
-    imgUrl: "clover.png",
-    stamped: false,
-  },
-  {
-    id:789,
-    imgUrl: "clover.png",
-    stamped: false,
-  },
-  {
-    id:978,
-    imgUrl: "clover.png",
-    stamped: false,
-  },
-];
+import axios from "axios";
+
+interface historyInterface{
+  id:number;
+  placeName:string;
+  address:string;
+  date:string;
+  time:string;
+  point:number;
+  task:number;
+  maxTask:number;
+  flagImgUrl:string;
+}
+
+interface stampInterface{
+  id:number;
+  imgUrl:string;
+  stamped:boolean;
+}
 export default function StampPage() {
   const [user,setUser] = useState<string|null>(null);
-  const [playStory, setPlayStory] = useState<typeof fake_data_play|null>(null);
+  const [playHistory, setPlayHistory] = useState<historyInterface[]|null>(null);
   const refStampGroup = useRef<HTMLDivElement|null>(null);
   const refHistoryGroup = useRef<HTMLDivElement|null>(null);
-  const [stamps, setStamps] = useState<typeof fake_stamp_data|null>(null);
+  const [stamps, setStamps] = useState<stampInterface[]|null>(null);
   useEffect(() => {
-    setUser(localStorage.getItem('user')||'user@example.com');
-    const id = setTimeout(() => setPlayStory(fake_data_play),0);
-    const second_id = setTimeout(() => setStamps(fake_stamp_data),0);
-    return ()=>{
-        clearTimeout(id);
-        clearTimeout(second_id);
-    }
+    setUser(localStorage.getItem('user'));
+    const token = localStorage.getItem('token');
+    axios.get('/api/user',{ headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }).then((res)=>{
+      setPlayHistory(res.data.history);
+      setStamps(res.data.stamps);
+    });
 },[]);
 const stampsComponent = useMemo(()=>{
   return stamps?.map((data)=>{
@@ -107,15 +43,18 @@ const stampsComponent = useMemo(()=>{
   })
 },[stamps])
 const historyComponent = useMemo(()=>{
-  return playStory?.map((data)=>{
-    return <PlayHistoryTab key={data.id} placeName={data.placeName} address={data.address} date={data.date} time={data.time} point={data.point} task={data.task} maxTask={data.maxTask} flagImgUrl={data.flagImgUrl}/>
+  return playHistory?.map((data)=>{
+    return <PlayHistoryTab key={data.id} placeName={data.placeName} address={data.address} date={new Date(data.date)} time={data.time} point={data.point} task={data.task} maxTask={data.maxTask} flagImgUrl={data.flagImgUrl}/>
   })
-},[playStory]);
+},[playHistory]);
   function goToUrl(str:string){
     window.open(str)
   }
-if(!playStory||!stamps){
-  return <h1>Loading...</h1>
+if(!playHistory||!stamps){
+  return  <div className={styles.back_ground_page}>
+      <img src="dots fade out.svg" className={styles.back_ground_img}/>
+        <h1 className={styles.loading_title}>Loading...</h1>
+      </div> 
 }
   return (
     <div className={styles.back_ground_page}>
