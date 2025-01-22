@@ -81,3 +81,7 @@
 .label_input{
     font-weight: bold;
 }
+.auth_button_code:active, .auth_button_email:active{
+    background: none;
+    background-color: rgb(179, 179, 179);
+}

@@ -3,16 +3,6 @@ import Footer from "@/component/Footer/Footer";
 import styles from "./page.module.css";
 import React, {useEffect, useState} from "react";
 export default function Home() {
-  const [user_data,set_user_data] = useState({
-    //fake data
-    email:"user@example.com",
-    play_historys:[{
-      title:"Space Needle"
-    }]
-  })
-  useEffect(()=>{
-    //fetch data
-  })
   return (
     <div className={styles.back_ground}>
     <img src="vr.png" alt="VR" className={styles.vr_image}/>
