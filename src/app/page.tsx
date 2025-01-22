@@ -12,7 +12,7 @@ export default function Home() {
         <h2 className={styles.title}>CLOVER</h2>
         <div className={styles.nav_group}>
         <a href="/auth" className={styles.nav_link}>Check Stamps</a>
-        <a href="#" className={styles.nav_link}>Contact Us</a>
+        <a href="https://clovervr.my.canva.site/dagctqz22c4" className={styles.nav_link}>Contact Us</a>
         </div>
       </header>
         <main className={styles.home_paragraph_container}>
