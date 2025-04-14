@@ -52,7 +52,7 @@
 .auth_button_email{
     flex:0.6;
 }
-.auth_button_code, .auth_button_email{
+/* .auth_button_email{
     border-radius: 5px;
     color: white;
     border: none;
@@ -60,7 +60,7 @@
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
-}
+} */
 .auth_button_code{
     margin-top: 1em;
 }
@@ -81,7 +81,7 @@
 .label_input{
     font-weight: bold;
 }
-.auth_button_code:active, .auth_button_email:active{
+/* .auth_button_email:active{
     background: none;
     background-color: rgb(179, 179, 179);
-}
+} */

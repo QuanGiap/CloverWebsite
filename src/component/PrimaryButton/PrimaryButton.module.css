@@ -1,0 +1,13 @@
+.primary_button:active{
+    background: none;
+    background-color: rgb(179, 179, 179);
+}
+.primary_button{
+    border-radius: 5px;
+    color: white;
+    border: none;
+    background: linear-gradient(0.25turn, #3BCB3D, #30AFC0);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
