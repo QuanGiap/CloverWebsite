@@ -1,87 +1,73 @@
 "use client"; // Mark this as a client component
+
 import Footer from "@/component/Footer/Footer";
 import styles from "./page.module.css";
-import { useState, useEffect, useMemo,useRef } from "react";
-import StampIcon from "@/component/StampIcon/StampIcon";
-import PlayHistoryTab from "@/component/PlayHistoryTab/PlayHistoryTab";
+import { useState } from "react";
 import axios from "axios";
-
-interface historyInterface{
-  id:number;
-  placeName:string;
-  address:string;
-  date:string;
-  time:string;
-  point:number;
-  task:number;
-  maxTask:number;
-  flagImgUrl:string;
-}
-
-interface stampInterface{
-  id:number;
-  imgUrl:string;
-  stamped:boolean;
-}
-export default function StampPage() {
-  const [user,setUser] = useState<string|null>(null);
-  const [playHistory, setPlayHistory] = useState<historyInterface[]|null>(null);
-  const refStampGroup = useRef<HTMLDivElement|null>(null);
-  const refHistoryGroup = useRef<HTMLDivElement|null>(null);
-  const [stamps, setStamps] = useState<stampInterface[]|null>(null);
-  useEffect(() => {
-    setUser(localStorage.getItem('user'));
-    const token = localStorage.getItem('token');
-    axios.get('/api/user',{ headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }).then((res)=>{
-      setPlayHistory(res.data.history);
-      setStamps(res.data.stamps);
-    });
-},[]);
-const stampsComponent = useMemo(()=>{
-  return stamps?.map((data)=>{
-    return <StampIcon key={data.id} altText="" imageUrl={data.imgUrl} stamped={data.stamped}/>
-  })
-},[stamps])
-const historyComponent = useMemo(()=>{
-  return playHistory?.map((data)=>{
-    return <PlayHistoryTab key={data.id} placeName={data.placeName} address={data.address} date={new Date(data.date)} time={data.time} point={data.point} task={data.task} maxTask={data.maxTask} flagImgUrl={data.flagImgUrl}/>
-  })
-},[playHistory]);
-  function goToUrl(str:string){
-    window.open(str)
-  }
-if(!playHistory||!stamps){
-  return  <div className={styles.back_ground_page}>
-      <img src="dots fade out.svg" className={styles.back_ground_img}/>
-        <h1 className={styles.loading_title}>Loading...</h1>
-      </div> 
-}
+import PrimaryButton from "@/component/PrimaryButton/PrimaryButton";
+import { submitStamp } from "@/tool/ApiCAll";
+export default function SubmitPage() {
+  const [load, setLoad] = useState(false);
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [message,setMessage] = useState("")
+  const saveStamp = async () => {
+    setLoad(true);
+    try{
+      const [error,res] = await submitStamp(email,code);
+      if(error) throw error;
+    }catch(e){
+      alert(e);
+    }
+    setLoad(false);
+  };
   return (
-    <div className={styles.back_ground_page}>
-      <img src="dots fade out.svg" className={styles.back_ground_img}/>
-      {/* <div className={styles.page_container}> */}
-      <div className={styles.title_page}>
-        <h1>{user}'s stamps</h1>
-        <p>Let's go to a travel to get next Stamp!</p>
-      </div>
-      <div className={styles.data_group}>
-          <h6 className={styles.collection_title}>Collection</h6>
-          <h6 className={styles.history_title}>Play History</h6>
-        <div className={styles.collection_group} ref={refStampGroup}>
-          <div ref={refHistoryGroup}className={styles.stamp_group}>
-           {stampsComponent}
+    <div className={styles.submit_background}>
+      <img
+        src="dots spread.svg"
+        alt="dot spread"
+        className={styles.backgound_img}
+      />
+      <div className={styles.submit_container}>
+        <div className={styles.submit_title_container}>
+          <h1 className={styles.submit_title}>Submit Your Stamps!</h1>
+        </div>
+        <div className={styles.submit_input_container}>
+          <div className={styles.input_group}>
+            <label htmlFor="email" className={styles.label_input}>
+              Email
+            </label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              id="email"
+              value={email}
+              className={styles.submit_input}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
           </div>
+          <div className={styles.input_group}>
+            <label htmlFor="email" className={styles.label_input}>
+              Code
+            </label>
+            <input
+              type="email"
+              placeholder="Enter your code"
+              id="code"
+              className={styles.submit_input}
+              value={code}
+              onChange={(e) => {
+                setCode(e.target.value);
+              }}
+            />
+          </div>
+          {message && <div>{message}</div>}
+          <PrimaryButton className={styles.submit_button_code} disabled={load}>
+            Submit Stamp
+          </PrimaryButton>
         </div>
-        <div className={styles.break_line}></div>
-        <div className={styles.history_group}>
-          {historyComponent}
-        </div>
-      </div>
-      <div className={styles.social_links_group}>
-        <img src="x.svg" className={styles.social_links} onClick={()=>goToUrl('/stamp')}/>
-        <img src="instagram.png" className={styles.social_links}  onClick={()=>goToUrl('/stamp')}/>
-        <img src="thread.png" className={styles.social_links+" "+styles.threads_logo} onClick={()=>goToUrl('/stamp')}/>
-      {/* </div> */}
       </div>
       <Footer />
     </div>

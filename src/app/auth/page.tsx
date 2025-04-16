@@ -34,7 +34,7 @@ export default function AuthPage() {
       />
       <div className={styles.auth_container}>
         <div className={styles.auth_title_container}>
-          <h1 className={styles.auth_title}>Verifiy Your stamps!</h1>
+          <h1 className={styles.auth_title}>Verifiy Your Stamps!</h1>
           <p className={styles.auth_paragraph}>
             Please sign in with your email before continuing.
           </p>

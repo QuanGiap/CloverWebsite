@@ -14,6 +14,14 @@ export async function login(email:string) {
     }catch(error){
         console.error("Error during login:", error);
         return [error,null];
+    } 
+}
+
+export async function submitStamp(email:string,code:string){
+    try {
+        const res = await axiosInstance.post('/data/save',{email,code});
+        return [null,res];
+    } catch (error) {
+        return [error,null];
     }
-  
 }
