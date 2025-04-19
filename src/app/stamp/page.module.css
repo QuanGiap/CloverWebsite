@@ -52,15 +52,6 @@
 .submit_button_email{
     flex:0.6;
 }
-/* .submit_button_email{
-    border-radius: 5px;
-    color: white;
-    border: none;
-    background: linear-gradient(0.25turn, #3BCB3D, #30AFC0);
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-} */
 .submit_button_code{
     margin-top: 1em;
 }
@@ -81,10 +72,6 @@
 .label_input{
     font-weight: bold;
 }
-/* .submit_button_email:active{
-    background: none;
-    background-color: rgb(179, 179, 179);
-} */
 .input_group{
     width: 100%;
     display: flex;

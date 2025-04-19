@@ -3,9 +3,8 @@
 import Footer from "@/component/Footer/Footer";
 import styles from "./page.module.css";
 import { useState } from "react";
-import axios from "axios";
 import PrimaryButton from "@/component/PrimaryButton/PrimaryButton";
-import { submitStamp } from "@/tool/ApiCAll";
+import { submitStamp } from "@/tool/ApiCall";
 export default function SubmitPage() {
   const [load, setLoad] = useState(false);
   const [email, setEmail] = useState("");

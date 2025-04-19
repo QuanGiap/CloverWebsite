@@ -9,6 +9,7 @@ export default function AuthPage() {
   const [load,setLoad] = useState(false);
   const [email,setEmail] = useState('');
   const [code,setCode] = useState('');
+  const [message,setMessage] = useState(null);
 
   const getToken = async () => {
     setLoad(true);
