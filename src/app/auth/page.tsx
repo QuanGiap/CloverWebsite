@@ -5,27 +5,12 @@ import styles from "./page.module.css";
 import { useState } from "react";
 import axios from "axios";
 import PrimaryButton from "@/component/PrimaryButton/PrimaryButton";
+import { useRouter } from "next/router";
 export default function AuthPage() {
   const [load,setLoad] = useState(false);
   const [email,setEmail] = useState('');
-  const [code,setCode] = useState('');
-  const [message,setMessage] = useState(null);
+  const router = useRouter();
 
-  const getToken = async () => {
-    setLoad(true);
-    try{
-      const response = await axios.post('/api/auth', { email, code });
-      setLoad(false);
-      if(response.status < 300 && response.status >= 200){
-        localStorage.setItem('token',response.data.token);
-        localStorage.setItem('user',email);
-        window.location.href = '/stamp';
-      }
-    }catch(e){
-      setLoad(false);
-      alert(e);
-    }
-  };
   return (
     <div className={styles.auth_background}>
       <img
@@ -45,7 +30,7 @@ export default function AuthPage() {
                 Email
             </label>
             <input type="email" placeholder="Enter your email" id="email" className={styles.auth_input} onChange={(e)=>{setEmail(e.target.value)}}/>
-          <PrimaryButton className={styles.auth_button_code} onClick={getToken} disabled={load}>Sign in</PrimaryButton>
+          <PrimaryButton className={styles.auth_button_code} onClick={()=>{}} disabled={load}>Sign in</PrimaryButton>
         </div>
       </div>
         <Footer/>
