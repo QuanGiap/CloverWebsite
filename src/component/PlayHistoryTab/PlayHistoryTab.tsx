@@ -1,26 +1,20 @@
+import { convertToDate, convertToTime } from "@/tool/DateTime";
 import styles from "./PlayHistoryTab.module.css";
 
 interface PlayHistoryTabProp {
   placeName: string;
   address: string;
   date: Date;
-  time: string;
+  time:number;
   point: number;
-  task: number;
-  maxTask: number;
   flagImgUrl: string;
 }
 
 export default function PlayHistoryTab(props: PlayHistoryTabProp) {
-  const { placeName, address, date, time, point, task, maxTask, flagImgUrl } =
+  const { placeName, address, date, time, point, flagImgUrl } =
     props;
-  const yyyy = date.getFullYear();
-  const mm = date.getMonth() + 1; // Months start at 0!
-  const dd = date.getDate();
-  const dayString = dd < 10 ? "0" + dd : dd;
-  const monthString = mm < 10 ? "0" + mm : mm;
-  const formattedToday = monthString + "-" + dayString + "/" + yyyy;
-  const taskString = task === maxTask ? "COMPLETE!" : task + " / " + maxTask;
+  const formattedToday = convertToDate(date);
+  const formattedTime = convertToTime(time);
   return (
     <div className={styles.play_history_container}>
       <img src={flagImgUrl} alt="flag" className={styles.flag} />
@@ -29,10 +23,9 @@ export default function PlayHistoryTab(props: PlayHistoryTabProp) {
             <h6 className={styles.place_name}>{placeName}</h6>
             <p className={styles.address}>{address}</p>
         </div>
-        <TextWithIcon icon="date.png" text={formattedToday} />
-        <TextWithIcon icon="problem.png" text={point.toString()} />
-        <TextWithIcon icon="point.png" text={taskString} />
-        <TextWithIcon icon="time.png" text={time} />
+        <TextWithIcon icon="/date.png" text={formattedToday} />
+        <TextWithIcon icon="/problem.png" text={point.toString()} />
+        <TextWithIcon icon="/time.png" text={formattedTime} />
       </div>
     </div>
   );
