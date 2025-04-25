@@ -72,15 +72,15 @@ export default function StampPage() {
     setTimeout(()=>{
       setData(fakeData);
     },1500)
-    // login(email).then((res)=>{
-    //   const [error,data] = res;
-    //   if (error) {
-    //     setMessage("Failed to load data. Please try again later.");
-    //     console.error("Error during login:", error);
-    //     return;
-    //   }
-    //   setData(data);
-    // })
+    login(email).then((res)=>{
+      const [error,result] = res;
+      if (error) {
+        setMessage("Failed to load data. Please try again later.");
+        console.error("Error during login:", error);
+        return;
+      }
+      setData(result);
+    })
   }, []);
   const stampsComponent = useMemo(() => {
     return (
