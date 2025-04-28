@@ -81,6 +81,12 @@
 .label_input{
     font-weight: bold;
 }
+.error_message{
+    color: rgb(215, 0, 0);
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 1em;
+}
 /* .auth_button_email:active{
     background: none;
     background-color: rgb(179, 179, 179);

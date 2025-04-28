@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import StampIcon from "@/component/StampIcon/StampIcon";
 import PlayHistoryTab from "@/component/PlayHistoryTab/PlayHistoryTab";
 import { useParams, useRouter } from "next/navigation";
-import { login, loginInterface } from "@/tool/ApiCall";
+import { getStamp, loginInterface } from "@/tool/ApiCall";
 import PrimaryButton from "@/component/PrimaryButton/PrimaryButton";
 
 const fakeData = {
@@ -72,7 +72,7 @@ export default function StampPage() {
     setTimeout(()=>{
       setData(fakeData);
     },1500)
-    login(email).then((res)=>{
+    getStamp(email).then((res)=>{
       const [error,result] = res;
       if (error) {
         setMessage("Failed to load data. Please try again later.");

@@ -30,7 +30,7 @@ const axiosInstance = axios.create({
     baseURL:BASE_URL,
     timeout:10000,    
 })
-export async function login(email:string):Promise<[Error | null, loginInterface | null]>{
+export async function getStamp(email:string):Promise<[Error | null, loginInterface | null]>{
     try{
         const res = await axiosInstance.post('/auth/login',{
           email,
@@ -42,7 +42,17 @@ export async function login(email:string):Promise<[Error | null, loginInterface 
         return [error as Error,null];
     } 
 }
-
+export async function login(email:string):Promise<boolean>{
+  try{
+    await axiosInstance.get('/auth?email='+encodeURIComponent(email));
+    return true;
+  } catch(error:any){
+    if(error.response?.status !== 404){
+      console.error("Error during login:", error);
+    }
+    return false;
+  }
+}
 export async function submitStamp(email:string,code:string){
     try {
         const res = await axiosInstance.post('/data/save',{email,code});
