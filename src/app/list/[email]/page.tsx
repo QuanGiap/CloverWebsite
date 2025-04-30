@@ -8,56 +8,6 @@ import { useParams, useRouter } from "next/navigation";
 import { getStamp, loginInterface } from "@/tool/ApiCall";
 import PrimaryButton from "@/component/PrimaryButton/PrimaryButton";
 
-const fakeData = {
-  user_id: "qJlXKlSFCmbEFvxpArFlGVIotr0t",
-  email: "test@gmail.com",
-  game_history: [
-    {
-      id: "HrsNcrDVxfxVtZRHr0Vp",
-      code_place_name: "SPACE_NEEDLE",
-      date: "2025-04-19T22:37:14.190Z",
-      points: 25,
-      time: 652,
-      user_id: "qJlXKlSFCmbEFvxpArFlGVIotr0t",
-      address: "Liberty Island, New York, NY 10004, United States",
-      place_name: "Statue of Liberty",
-      flag_img_url:
-        "http://127.0.0.1:9199/eshop-3ed25.appspot.com/flag%2Fusa.png",
-      icon_url:
-        "http://127.0.0.1:9199/eshop-3ed25.appspot.com/stamp%2Fsecond_tower.png",
-    },
-  ],
-  stamps: [
-    {
-      place_id: "EIFFEL_TOWER",
-      place_name: "Eiffel Tower",
-      icon_url:
-        "http://127.0.0.1:9199/eshop-3ed25.appspot.com/stamp%2Feiffel.svg",
-      has_stamp: false,
-    },
-    {
-      place_id: "GREAT_WALL_OF_CHINA",
-      place_name: "Great Wall of China",
-      icon_url:
-        "http://127.0.0.1:9199/eshop-3ed25.appspot.com/stamp%2Fclover.png",
-      has_stamp: false,
-    },
-    {
-      place_id: "SPACE_NEEDLE",
-      place_name: "Space Needle",
-      icon_url:
-        "http://127.0.0.1:9199/eshop-3ed25.appspot.com/stamp%2Fspace_needle.svg",
-      has_stamp: false,
-    },
-    {
-      place_id: "STATUE_OF_LIBERTY",
-      place_name: "Statue of Liberty",
-      icon_url:
-        "http://127.0.0.1:9199/eshop-3ed25.appspot.com/stamp%2Fsecond_tower.png",
-      has_stamp: false,
-    },
-  ],
-};
 
 export default function StampPage() {
   const param = useParams();
@@ -69,9 +19,6 @@ export default function StampPage() {
   const [message, setMessage] = useState("");
   useEffect(() => {
     // fech fake data
-    setTimeout(()=>{
-      setData(fakeData);
-    },1500)
     getStamp(email).then((res)=>{
       const [error,result] = res;
       if (error) {
@@ -85,9 +32,10 @@ export default function StampPage() {
   const stampsComponent = useMemo(() => {
     return (
       data?.stamps?.map((data) => {
+        console.log(data.has_stamp);
         return (
           <StampIcon
-            key={data.place_id}
+            key={data.place_name}
             altText=""
             imageUrl={data.icon_url}
             stamped={data.has_stamp}
@@ -175,17 +123,17 @@ export default function StampPage() {
         </div>,
         <div className={styles.social_links_group}>
           <img
-            src="x.svg"
+            src="/x.svg"
             className={styles.social_links}
             onClick={() => goToUrl("/stamp")}
           />
           <img
-            src="instagram.png"
+            src="/instagram.png"
             className={styles.social_links}
             onClick={() => goToUrl("/stamp")}
           />
           <img
-            src="thread.png"
+            src="/thread.png"
             className={styles.social_links + " " + styles.threads_logo}
             onClick={() => goToUrl("/stamp")}
           />
