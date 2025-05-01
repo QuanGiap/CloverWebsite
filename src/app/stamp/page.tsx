@@ -12,11 +12,10 @@ export default function SubmitPage() {
   const [message,setMessage] = useState("")
   const saveStamp = async () => {
     setLoad(true);
-    try{
-      const [error,res] = await submitStamp(email,code);
-      if(error) throw error;
-    }catch(e){
-      alert(e);
+    const [error,res] = await submitStamp(email,code);
+    if(error){
+      setMessage("Failed to submit stamp. Please try again later.");
+      console.error("Error during login:", error);
     }
     setLoad(false);
   };
